@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="search.css">
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="./assets/logored.svg" alt="">
+        </div>
+        <div class="mid">
+            <form id="searchForm">
+                <p id="showCityName">City</p>
+                <p id="showDate">Feb</p>
+                <p id="showGuest">2 Guests</p>
+                <button class="search-button">
+                    <img src="./assets/searchIcon.svg" alt="">
+                </button>
+            </form>
+        </div>
+        <div class="right">
+            <a href="">Become a Host</a>
+            <img src="./assets/globe-black.svg" alt="">
+            <div class="menu">
+                <img src="./assets/menuIcon.svg" alt="">
+                <img src="./assets/profileIcon.svg" alt="">
+            </div>
+        </div>
+    </nav>
+    <div class="search-box">
+        <form id="searchForm">
+            <div class="inputs">
+                <label for="location">Location</label>
+                <input type="text" name="location" id="location" placeholder="Where are you going?">
+            </div>
+            <div class="inputs">
+                <label for="location">Check in</label>
+                <input type="date" name="checkin" id="checkin" placeholder="Add dates">
+            </div>
+            <div class="inputs">
+                <label for="location">Check out</label>
+                <input type="date" name="checkout" id="checkout" placeholder="Add dates">
+            </div>
+            <div class="inputs">
+                <label for="location">Guest</label>
+                <input type="number" id="guest" name="guest" placeholder="Add guests">
+            </div>
+            <button id="searchButton" class="search-button">
+                <img src="./assets/searchIcon.svg" alt="">
+            </button>
+        </form>
+    </div>
+    <div class="filters">
+        <select id="selectPrice">
+            <option disabled selected value="">Price</option>
+            <option value="9999999">any</option>
+            <option value="1000">upto 1000</option>
+            <option value="5000">upto 5000</option>
+            <option value="10000">upto 10000</option>
+        </select>
+        <select id="typeOfPlace">
+            <option disabled selected value="">Type of place</option>
+            <option value="">none</option>
+            <option value="Private room">Private room</option>
+            <option value="Entire serviced apartment">Entire serviced apartment</option>
+            <option value="Entire home">Entire home</option>
+            <option value="Entire guesthouse">Entire guesthouse</option>
+            <option value="Room in hotel">Room in hotel</option>
+            <option value="Entire condo">Entire condo</option>
+        </select>
+        <button id="toggleFreeCancellation">Free cancellation</button>
+        <button id="toggleWifi">Wifi</button>
+        <button id="toggleKitchen">Kitchen</button>
+        <button id="toggleAC">Air conditioning</button>
+        <button id="toggleWasher">Washer</button>
+        <button id="toggleIron">Iron</button>
+        <button id="toggleWorkspace">Dedicated workspace</button>
+        <button id="toggleFreeParking">Free parking</button>
+        <button id="toggleDryer">Dryer</button>
+        <button id="filters">Filters</button>
+    </div>
+    <section class="search-result">
+        <div class="hotelsdiv">
+            <h4 id="searchResultCount">200+ stays in Bordaux</h4>
+            <div class="hotels">
+                <div class="hotel">
+                    <div class="imageDiv">
+                        <img src="https://a0.muscache.com/im/pictures/miso/Hosting-39618986/original/db15bf2f-d52d-4216-852a-061cda928966.jpeg?im_w=720"
+                            alt="">
+                    </div>
+                    <div class="hotelDetails">
+                        <img id="likeIcon" src="./assets/liked.svg" alt="">
+                        <div class="title">
+                            <p>Entire home in Bordeaux</p>
+                            <h3>Bordeaux Getaway</h3>
+                        </div>
+                        <div class="features">
+                            4-6 guests · Entire Home · 5 beds · 3 bath <br>
+                            Wifi · Kitchen · Free Parking
+                        </div>
+                        <div class="rating">(318 reviews)</div>
+                        <h3 class="price">$100 <span>/night</span></h3>
+                    </div>
+                </div>
+                <div class="hotel">
+                    <img id="likeIcon" src="./assets/liked.svg" alt="">
+                    <div class="imageDiv">
+                        <img src="https://a0.muscache.com/im/pictures/miso/Hosting-39618986/original/db15bf2f-d52d-4216-852a-061cda928966.jpeg?im_w=720"
+                            alt="">
+                    </div>
+                    <div class="hotelDetails">
+                        <div class="title">
+                            <p>Entire home in Bordeaux</p>
+                            <h3>Bordeaux Getaway</h3>
+                        </div>
+                        <div class="features">
+                            4-6 guests · Entire Home · 5 beds · 3 bath <br>
+                            Wifi · Kitchen · Free Parking
+                        </div>
+                        <div class="rating">(318 reviews)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="map">
+            <img src="https://joomly.net/frontend/web/images/googlemap/map.png" alt="">
+        </div>
+    </section>
+    <script src="search.js"></script>
+</body>
+
+</html>

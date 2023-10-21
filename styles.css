@@ -81,6 +81,8 @@ form>div>input {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
+    cursor: pointer;
 }
 
 .inspiration {
@@ -149,6 +151,8 @@ footer>div {
     flex-direction: column;
     gap: 10px;
 }
+
+
 @media screen and (max-width: 768px){
     nav {
         padding: 10px;
@@ -167,8 +171,8 @@ footer>div {
     }
     form>.inputs>input {
         font-size: 0.7rem;
-        color: red;
     }
+   
     .home>img {
         width: 100%;
         padding: 2rem 0;
