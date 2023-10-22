@@ -8,7 +8,7 @@ const urlParams = new URLSearchParams(window.location.search);
 let cityName = urlParams.get('location')
 let checkin = urlParams.get('checkin')
 let checkout = urlParams.get('checkout')
-let guest = urlParams.get('guest')
+let guest = urlParams.get('guest') || 1
 console.log(cityName, checkin, checkout, guest)
 
 let url = `https://airbnb13.p.rapidapi.com/search-location?location=${cityName}&checkin=${checkin}&checkout=${checkout}&adults=${guest}&children=0&infants=0&pets=0&page=1&currency=INR`;
@@ -27,7 +27,7 @@ let isDryerSelected = false
 const options = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': '238c7b5bbdmshda9d8ae0566d523p1493b4jsnac1ce9f90205',
+        'X-RapidAPI-Key': 'f5f3289e7bmsh6d4d9e5c6728ef5p1d0bb0jsnd72aaae20a24',
         'X-RapidAPI-Host': 'airbnb13.p.rapidapi.com'
     }
 };
