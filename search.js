@@ -23,6 +23,10 @@ let isIronSelected = false
 let isParkingSelected = false
 let isWorkspaceSelected= false
 let isDryerSelected = false
+let isSetPriceSelected = false
+let selectedPrice = null
+let isTypeSelected = false
+let typeOfPlace = null
 
 const options = {
     method: 'GET',
@@ -44,53 +48,89 @@ async function getData() {
         // let result = data;
         let resultCopy = [...result]
         showSeach()
-        console.log(result)
         renderHotels(result)
+
+        
+
+        let filterList = []
+        
+        function applyFiltersAndRenderHotels(){
+            let filteredResult = result.filter(el=>{
+                for(let i =0; i<filterList.length; i++){
+                    if(filterList[i]=="freeCancellation"){
+                        if(el.cancelPolicy!="CANCEL_FLEXIBLE")
+                            return false
+                    }
+                    if(filterList[i]=="wifi"){
+                        if(!el.previewAmenities.includes("Wifi"))
+                            return false
+                    }
+                    if(filterList[i]=="kitchen"){
+                        if(!el.previewAmenities.includes("Kitchen"))
+                            return false
+                    }
+                    if(filterList[i]=="Air conditioning"){
+                        if(!el.previewAmenities.includes("Air conditioning"))
+                            return false
+                    }
+                    if(filterList[i]=="set price"){
+                        if(el.price.rate>selectedPrice)
+                            return false
+                    }
+                    if(filterList[i]=="type"){
+                        if(el.type.includes(typeOfPlace))
+                            return false
+                    }
+                }
+                return true
+            })
+
+            renderHotels(filteredResult)
+        }
 
         toggleFreeCancellation.addEventListener('click',(e)=>{
             e.target.classList.toggle('selected')
-            if(!isFreeCancellationSelected){
-                result = result.filter(el=>el.cancelPolicy=="CANCEL_FLEXIBLE")
+            if(isFreeCancellationSelected){
+                filterList = filterList.filter(el=>el!="freeCancellation")
             }
             else{
-                result = [...resultCopy]
+                filterList.push("freeCancellation")
             }
+            applyFiltersAndRenderHotels()
             isFreeCancellationSelected = !isFreeCancellationSelected
-            
-            renderHotels(result)
         })
         toggleWifi.addEventListener('click',(e)=>{
             e.target.classList.toggle('selected')
-            if(!isWifiSelected){
-                result = result.filter(el=>el.previewAmenities.includes("Wifi"))
+            if(isWifiSelected){
+                filterList = filterList.filter(el=>el!="wifi")
             }
             else{
-                result = [...resultCopy]
+                filterList.push("wifi")
             }
+            applyFiltersAndRenderHotels()
             isWifiSelected = !isWifiSelected
-            renderHotels(result)
         })
         toggleKitchen.addEventListener('click',e=>{
             e.target.classList.toggle('selected')
-            if(!isKitchenSelected){
-                result = result.filter(el=>el.previewAmenities.includes("Kitchen"))
+            if(isKitchenSelected){
+                filterList = filterList.filter(el=>el!="kitchen")
             }
             else{
-                result = [...resultCopy]
+                filterList.push("kitchen")
             }
+            applyFiltersAndRenderHotels()
             isKitchenSelected = !isKitchenSelected
-            renderHotels(result)
         })
         toggleAC.addEventListener('click',e=>{
             e.target.classList.toggle('selected')
-            if(!isACSelected){
-                result = result.filter(el=>el.previewAmenities.includes("Air conditioning"))
+            if(isACSelected){
+                filterList = filterList.filter(el=>el!="Air conditioning")
             }
             else{
-                result = [...resultCopy]
+                filterList.push("Air conditioning")
             }
+            applyFiltersAndRenderHotels()
             isACSelected = !isACSelected
-            renderHotels(result)
         })
         toggleWasher.addEventListener('click',e=>{
             e.target.classList.toggle('selected')
@@ -148,16 +188,29 @@ async function getData() {
             renderHotels(result)
         })
         selectPrice.addEventListener("input",e=>{
-            result = [...resultCopy]
-            result = result.filter(el=>el.price.rate<parseInt(e.target.value))
-            filterButtons.forEach(el=>el.classList.remove('selected'))
-            renderHotels(result)
+            e.target.classList.toggle('selected')
+            if(e.target.value=="0"){
+                filterList = filterList.filter(el=>el!="set price")
+                isSetPriceSelected = !isSetPriceSelected
+            }
+            else{
+                filterList.push("set price")
+                selectedPrice = e.target.value
+            }
+            applyFiltersAndRenderHotels()
+            
         })
-        typeOfPlace.addEventListener("input",e=>{
-            result = [...resultCopy]
-            result = result.filter(el=>el.type.includes(e.target.value))
-            filterButtons.forEach(el=>el.classList.remove('selected'))
-            renderHotels(result)
+        selectType.addEventListener("input",e=>{
+            e.target.classList.toggle('selected')
+            if(e.target.value==""){
+                filterList = filterList.filter(el=>el!="type")
+                isTypeSelected = !isTypeSelected
+            }
+            else{
+                filterList.push("type")
+                typeOfPlace = e.target.value
+            }
+            applyFiltersAndRenderHotels()
         })
 
     } catch (error) {
