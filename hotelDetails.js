@@ -43,3 +43,10 @@ hotelDetails.price.priceItems.forEach(el=>{
 })
 
 totalPrice.innerText = "₹"+hotelDetails.price.total
+
+map.src = src=`https://maps.google.com/maps?q=${hotelDetails.lat}, ${hotelDetails.lng}&z=15&output=embed`
+
+getDirectionBtn.addEventListener('click', ()=>{
+    const url = `https://www.google.com/maps/dir//${hotelDetails.lat},${hotelDetails.lng}`
+    window.open(url, "_blank")
+})

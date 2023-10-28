@@ -191,8 +191,34 @@ a {
 .dateInputs{
     display: flex;
 }
-@media screen and (max-width:768px) {
+#map {
+    margin: auto;
+    width: 100%;
+    margin-block: 1rem;
+    height: 30rem;
+}
 
+#getDirectionBtn {
+    display: flex;
+    padding: 12px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex: 1 0 0;
+    border-radius: 8px;
+    background: #3182de;
+    color: white;
+    margin-top: 1rem;
+    outline: none;
+    border: none;
+    max-width: 8rem;
+    cursor: pointer;
+    max-height: 3rem;
+}
+@media screen and (max-width:768px) {
+    #map {
+        width: 100%;
+    }
     nav {
         padding: 10px;
     }

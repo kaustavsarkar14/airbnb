@@ -45,7 +45,7 @@ async function getData() {
 
         // const response = await fetch("./dummy.json");
         // const data = await response.json();
-        // let result = data;
+        // let result = data.slice(0,40);
         let resultCopy = [...result]
         showSeach()
         renderHotels(result)
@@ -86,6 +86,7 @@ async function getData() {
             })
 
             renderHotels(filteredResult)
+            initMap(filteredResult)
         }
 
         toggleFreeCancellation.addEventListener('click',(e)=>{
@@ -212,6 +213,26 @@ async function getData() {
             }
             applyFiltersAndRenderHotels()
         })
+
+        function initMap(hotels){
+            let avgLat =  hotels.reduce((sum, hotel) => sum + hotel.lat, 0) / hotels.length;
+            let avgLng =  hotels.reduce((sum, hotel) => sum + hotel.lng, 0) / hotels.length;
+
+            let options = {
+                zoom : 10,
+                center :{lat: avgLat, lng: avgLng}
+            }
+            let map = new google.maps.Map(document.getElementById("map"), options)
+            for(let i =0; i<hotels.length; i++){
+                let marker = new google.maps.Marker({
+                    position: {lat: hotels[i].lat, lng: hotels[i].lng},
+                    map: map,
+                    title: 'Marker Title'
+                }); 
+            }
+            
+        }
+        initMap(result)
 
     } catch (error) {
         console.error(error);
