@@ -187,7 +187,13 @@ form>div>input {
     bottom: 1rem;
     right: 1rem;
 }
-
+#directionIcon {
+    height: 2rem;
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    cursor: pointer;
+}
 #likeIcon {
     height: 2rem;
     position: absolute;
@@ -339,5 +345,8 @@ hr {
         bottom: 5px;
         right: 5px;
         transform: scale(0.8);
+    }
+    #directionIcon {
+        right: 5px;
     }
 }

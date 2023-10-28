@@ -266,6 +266,7 @@ function renderHotels(result) {
         </div>
         <div class="hotelDetails">
         <img id="likeIcon" src="./assets/liked.svg" alt="">
+        <img id="directionIcon" onclick="navigateMap(event,${el.lat}, ${el.lng})" src="https://icon-library.com/images/google-map-direction-icon/google-map-direction-icon-2.jpg" alt="">
         <div class="title">
             <p style="margin-bottom:0.5rem;">${el.type} in ${el.city}</p>
             <h3>${el.name}</h3>
@@ -329,5 +330,14 @@ function showSeach() {
     showGuest.innerText = guest || 0
 }
 
+function navigateMap(event, lat, lng){
+    event.stopPropagation()
+    navigator.geolocation.getCurrentPosition(position=>{
+        const mapsURL = `https://www.google.com/maps/dir/${position.coords.latitude},${position.coords.longitude}/${lat},${lng}`;
+        window.open(mapsURL, "_blank")
+    }, 
+    err=>alert("Please allow location to get direction")
+    )
+}
 
 
